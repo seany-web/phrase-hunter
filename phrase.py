@@ -4,6 +4,7 @@ from character import Character
 
 # Create your Phrase class logic here.
 class Phrase:
+    """Instatiates a new phrase object and turns the phase into a list of Character objects. Also sets the WAS_GUESSED attribute on any non-alpha characters to True. This is so the player doesn't have to guess symbols as part of the phrase"""
     def __init__(self, phrase, solved=False):
         self.solved = solved
         self.phrase = phrase        
