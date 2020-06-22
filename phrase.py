@@ -17,17 +17,11 @@ class Phrase:
 
 
     def check_solved(self):
-        """checks all character objects in the phrase to see if they have been guessed correctly and sets the solved instance attribute accordingly""" 
-        # for letter in self.characters:
-        #     if letter.was_guessed:
-        #         self.solved = True
-        #     else:
-        #         self.solved = False
-        # return self.solved
-        my_list = []
+        """checks all character objects in the phrase to see if they have been guessed correctly and sets the solved instance attribute if all accordingly""" 
+        characters_guessed_correctly = []
         for letter in self.characters:
-            my_list.append(letter.was_guessed)
-        if all(my_list):
+            characters_guessed_correctly.append(letter.was_guessed)
+        if all(characters_guessed_correctly):
             self.solved = True
         else:
             self.solved = False
