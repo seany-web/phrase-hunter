@@ -3,6 +3,7 @@ import random
 
 from character import Character
 from phrase import Phrase
+from phrase_list import phrase_list
 
 # Create your Game class logic in here.
 class Game:
@@ -10,7 +11,7 @@ class Game:
         self.phrases = [Phrase(phrase) for phrase in phrases]
         self.current_phrase = random.choice(self.phrases)
         self.lives = 5
-        self.game_active = False
+        self.game_active = True
 
     def game_state(self, action):
         """This will either start or end the game by changing the game_active instance attribute"""
@@ -44,13 +45,14 @@ class Game:
 
     def play_game(self):
         """This controls the flow of the game and prints messages to the player"""
-        self.game_active = True
         # start game loop
         while(self.game_active):
             # print phrase in current state
             print(self.current_phrase.show_phrase())
+            print("\n")
             # prompt user to enter a guess
             player_guess = self.get_player_input()
+            print("\n")
             # if guess does not match phrase
             if player_guess not in self.current_phrase.phrase:
                 # player loses a life
@@ -68,4 +70,28 @@ class Game:
                 self.determine_win_loss()
             # otherwise continue game loop
 
-            #prompt player to play again
+        #prompt player to play again
+        self.prompt_to_play_again()
+
+    def prompt_to_play_again(self):
+        while True:    
+            print("\n")
+            answer = input('Would you like to play again? Y/N: ')
+            if answer.upper() == "Y": 
+                self.game_state("start")
+                break
+            elif answer.upper() == "N":
+                print("\nThanks for playing. Exiting Application!\n")
+                break
+            else:
+                print("\nInvalid response. Please enter Y or N\n")
+        
+        if self.game_active:
+            self.reset_game()
+
+    def reset_game(self):
+        #generate new random phrase
+        new_game = Game(phrase_list)
+        #start game with new phrase
+        new_game.play_game()
+
