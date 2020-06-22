@@ -38,5 +38,5 @@ class Phrase:
         """displays all characters in active phrase"""
         formatted_phrase = ""
         for letter in self.characters:
-            formatted_phrase += letter.show_character()
+            formatted_phrase += letter.show_character() + " "
         return formatted_phrase
