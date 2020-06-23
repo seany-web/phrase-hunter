@@ -25,14 +25,14 @@ class Game:
         waiting_for_input = True
         while(waiting_for_input):
             answer = input("Please enter your guess: ")
-            if not re.search(r'[a-z]', answer):
+            if not re.search(r'[a-z]', answer, re.IGNORECASE):
                 print("{} is not a valid guess. Please try again.".format(answer))
             elif len(answer) > 1:
                 print("{} is too long. You may only enter a single character per guess.".format(answer)
             )
             else:
                 waiting_for_input = False
-        return answer
+        return answer.lower()
 
     def determine_win_loss(self):
         """This will check if the player has won or lost the game"""
